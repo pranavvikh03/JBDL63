@@ -1,7 +1,9 @@
+package Session4;
+
 class Ticket{
     private int ticketSize = 10;
 
-      public void bookTicket(int requiredNo){
+      synchronized public void bookTicket(int requiredNo){
         if(requiredNo <= ticketSize){
             ticketSize -= requiredNo;
             try{
@@ -19,16 +21,6 @@ public class T3{
 
     public static void main(String[] args) {
         final Ticket t = new Ticket();
-        new Thread(){
-            public void run(){
-                t.bookTicket(6);
-            }
-        }.start();
-        new Thread(){
-            public void run(){
-                t.bookTicket(6);
-            }
-        }.start();
         new Thread(){
             public void run(){
                 t.bookTicket(6);

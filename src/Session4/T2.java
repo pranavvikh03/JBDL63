@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 // 2. By implementing Runnable interface
 public class T2 implements Runnable {
 
