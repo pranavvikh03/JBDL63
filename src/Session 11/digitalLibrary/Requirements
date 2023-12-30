@@ -1,0 +1,61 @@
+
+
+Digital Library
+
+- Tables Required:
+
+1. Books :
+	- bookId
+	- bookName
+	- publicationYear
+	- edition
+	- price
+	- category
+	- insertionTime
+	- updationTime
+
+2. Author :
+	- authorId
+	- authorName
+	- Address
+
+3. User :
+	- userId
+	- userName
+	- userMobileNo
+	- userEmailId
+
+
+Relationships between Tables:
+
+	- Many to 1 for Books and Author
+	- Many to Many for Books and Users
+
+API’s Required:
+	- Book
+		- Insert New Book
+		- Update existing Book details
+		- Delete existing book
+		- Fetch Book
+		- Fetch Books by Author
+		- Fetch Books by Category
+
+	- Author
+		- Insert Author
+		- Update author details
+		- Delete author
+		- Fetch author
+
+	- User
+		- Insert User
+		- Update User
+		- Delete User
+		- Fetch User Details
+		- Fetch All books issued to User
+
+
+Flow :
+    1. Creating Basic Api's
+    2. Apply Validation
+    3. Apply Exception Handling
+
