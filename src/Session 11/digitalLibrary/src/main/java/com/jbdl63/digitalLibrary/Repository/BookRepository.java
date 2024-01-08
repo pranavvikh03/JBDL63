@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    @Query("SELECT a FROM Book a WHERE a.author.authorName = ?1")
-    List<Book> findByAuthorName(String authorName);
+//    @Query("SELECT a FROM Book a WHERE a.author.authorName = ?1")
+    List<Book> findByAuthorAuthorName(String authorName);
+
 }

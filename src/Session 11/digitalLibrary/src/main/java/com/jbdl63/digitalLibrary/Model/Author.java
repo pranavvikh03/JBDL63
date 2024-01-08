@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class Author {
 
     @Id
@@ -29,7 +30,7 @@ public class Author {
 
     //Relation Attributes
 
-    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "author")
+    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "author", fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Book> booksList = new ArrayList<>();
 }

@@ -29,8 +29,12 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-validation:3.1.7'
+	testImplementation 'junit:junit'
+	testImplementation 'org.mockito:mockito-core:5.7.0'
+	implementation 'redis.clients:jedis:5.1.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.2.0'
 }
 
-tasks.named('test') {
+test{
 	useJUnitPlatform()
 }

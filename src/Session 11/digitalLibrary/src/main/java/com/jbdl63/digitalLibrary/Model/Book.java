@@ -1,11 +1,14 @@
 package com.jbdl63.digitalLibrary.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "library_book")
@@ -37,9 +40,14 @@ public class Book {
 
     //Relation Attributes
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "author_id")
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Author author;
+
+    @ManyToMany(mappedBy = "issuedBooks")
+    @JsonBackReference
+    private List<User> users = new ArrayList<>();
 
     @CreationTimestamp
     private LocalDateTime creationTime;
@@ -47,7 +55,3 @@ public class Book {
     @UpdateTimestamp
     private LocalDateTime updationTime;
 }
-
-
-
-
