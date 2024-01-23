@@ -2,11 +2,13 @@ package com.jbdl63.JDBCTemplate.Controller;
 
 import com.jbdl63.JDBCTemplate.Model.Student;
 import com.jbdl63.JDBCTemplate.Service.StudentService;
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,13 +16,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/students")
 @Slf4j
+@Validated
 public class StudentController {
 
     @Autowired
     private StudentService studentService;
 
     @PostMapping
-    public ResponseEntity<String> addNewStudent(@RequestBody Student student) {
+    public ResponseEntity<String> addNewStudent(@Valid @RequestBody Student student) {
         if(studentService.createNewStudent(student) == 1)
             return new ResponseEntity<>(String.format("New Student with Name:%s is Added", student.getStudName()), HttpStatus.CREATED);
         return new ResponseEntity<>("Insertion Failed", HttpStatus.BAD_REQUEST);

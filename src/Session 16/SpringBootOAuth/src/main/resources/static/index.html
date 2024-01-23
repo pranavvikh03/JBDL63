@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width = device-width"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+    <body>
+        <div class="container">
+            <h1>Oauth 2.0 Github Integration</h1>
+            <div class="container beforeSignIn">
+                <a href="/oauth2/authorization/github" class="btn btn-success">Login With Github</a>
+            </div>
+            <div class="container afterSignIn" style="display:none">
+                <h3>The User Name is : <span id="username"></span></h3>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+        <script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script>
+        <script type="text/javascript">
+            $
+            .ajaxSetup({
+              beforeSend : function(xhr, settings) {
+                if (settings.type == 'POST' || settings.type == 'PUT'
+                    || settings.type == 'DELETE') {
+                  if (!(/^http:.*/.test(settings.url) || /^https:.*/
+                      .test(settings.url))) {
+                    // Only send the token to relative URLs i.e. locally.
+                    xhr.setRequestHeader("X-XSRF-TOKEN",
+                        Cookies.get('XSRF-TOKEN'));
+                  }
+                }
+              }
+            });
+            $.get("/user", function(data){
+                $("#username").html(data.name);
+                $(".beforeSignIn").hide();
+                $(".afterSignIn").show();
+            });
+
+            var logout = function() {
+                $.post("/logout", function() {
+                    $("#username").html('');
+                    $(".beforeSignIn").show();
+                    $(".afterSignIn").hide();
+                })
+            }
+
+        </script>
+    </body>
+</html>
