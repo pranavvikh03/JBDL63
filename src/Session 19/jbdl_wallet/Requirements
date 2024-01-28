@@ -1,0 +1,75 @@
+Major Project - Paytm Wallet
+
+1. Add Money
+2. Withdraw Money
+3. Send Money
+4. Recharge / Bill Payments
+5. Get History
+6. Get Transaction Details by transactionId
+7. Get Balance
+8. Notification (Mail)
+
+
+Services:
+1. User Service
+2. Transaction Service
+3. Wallet Service
+4. Notification
+
+
+API Required:
+1. User Service:
+    - Create Account
+    - Get Details
+    - Update Account
+    - Delete Account
+
+2. Wallet Service:
+    - Get Balance
+    - Create Wallet
+    - Update Wallet
+    - Update Configuration
+
+3. Transaction Service:
+    - Initiate Transaction
+    - Recharge / Bill Payment
+    - Get Transaction Details
+    - Get History
+
+4. Notification Service:
+    - Send Mail
+
+Entity:
+1. User:
+    - userId
+    - userFullName - Not Null, Unique
+    - userMobileNo - Not Null, Unique, Validated
+    - userEmailId - Not Null, Unique, Validated
+    - userAddress
+    - userPan
+    - CreatedDate
+    - UpdatedDate
+
+2. Wallet:
+    - walletId
+    - userId
+    - Balance
+    - dailyLimit
+    - dailyTransactionLimit
+    - CreatedDate
+    - UpdatedDate
+
+3. Transaction:
+    - transactionId
+    - walletId
+    - senderId
+    - receiverId
+    - amount - > 0
+    - paymentStatus - SUCCESS, PENDING, FAILED
+    - remark
+    - paymentDate
+
+4. UserAuthentication:
+    - userName
+    - passWord
+    - userId
